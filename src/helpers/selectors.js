@@ -1,15 +1,16 @@
-export function getAppointmentsForDay(state, day) {
-  const selectedDay = state.days.find((element) => element.name === day);
+export const getAppointmentsForDay = function (state, day) {
+  const days = state.days.find((d) => d.name === day);
 
-  if (!selectedDay) {
+  if (!state.days.length || days === undefined) {
     return [];
   }
 
-  const appointment = selectedDay.appointments.map(
-    (element) => state.appointments[element]
-  );
+  // console.log("days", days.appointments);
+  // console.log("state", state);
 
-  console.log("selectedDay", selectedDay);
+  const appointments = days.appointments.map((id) => state.appointments[id]);
 
-  return appointment;
-}
+  console.log("appointments", appointments);
+
+  return appointments;
+};
