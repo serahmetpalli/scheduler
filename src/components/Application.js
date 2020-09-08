@@ -88,6 +88,7 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     appointments: [],
+    interviewer: [],
   });
 
   const setDay = (day) => setState({...state, day});
@@ -95,10 +96,11 @@ export default function Application(props) {
 
   useEffect(() => {
     const promise1 = axios.get("/api/days");
-    const promise2 = axios.get("api/appointments");
+    const promise2 = axios.get("/api/appointments");
+    const promise3 = axios.get("/api/interviewers");
 
-    Promise.all([promise1, promise2]).then((res) => {
-      console.log("res from promise: ", res[1].data);
+    Promise.all([promise1, promise2, promise3]).then((res) => {
+      console.log("res from promise: ", res[2].data);
       setState((prev) => ({
         ...prev,
         days: res[0].data,
@@ -108,12 +110,10 @@ export default function Application(props) {
   }, []);
 
   const appointmentsData = getAppointmentsForDay(state, state.day);
+
   const appointments = appointmentsData.map((appointment) => (
     <Appointment key={appointment.id} {...appointment} />
   ));
-
-  // const [day, setDay] = useState("Monday");
-  // const [days, setDays] = useState([]);
 
   return (
     <main className="layout">
