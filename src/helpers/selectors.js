@@ -8,9 +8,6 @@ export const getAppointmentsForDay = function (state, day) {
   }
 
   const appointments = days.appointments.map((id) => state.appointments[id]);
-
-  // console.log("state", state);
-
   return appointments;
 };
 
@@ -24,4 +21,8 @@ export const getInterview = function (state, interview) {
     ...interview,
     interviewer: state.interviewers[interview.interviewer],
   };
+};
+
+export const getInterviewersForDay = function (state, day) {
+  return;
 };

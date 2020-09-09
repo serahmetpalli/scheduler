@@ -1,6 +1,9 @@
-import {getAppointmentsForDay, getInterview} from "helpers/selectors";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "helpers/selectors";
 import {renderHook, act} from "@testing-library/react-hooks";
-
 import useVisualMode from "hooks/useVisualMode";
 
 const state = {
@@ -45,6 +48,11 @@ const state = {
     },
   },
 };
+
+test("getInterviewersForDay returns an array", () => {
+  const result = getInterviewersForDay(state, "Monday");
+  expect(Array.isArray(result)).toBe(true);
+});
 
 test("getInterview returns an object with the interviewer data", () => {
   const result = getInterview(state, state.appointments["3"].interview);
