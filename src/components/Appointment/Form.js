@@ -30,7 +30,7 @@ export default function Form(props) {
             /*
           This must be a controlled component
         */
-            onChange={(e) => setName(e.value)}
+            onChange={(e) => setName(e.target.value)}
           />
         </form>
         <InterviewerList
@@ -41,7 +41,7 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={props.onSave}>
+          <Button danger onClick={() => props.onSave(name, interviewer)}>
             Save
           </Button>
           <Button cancel onClick={props.onCancel}>

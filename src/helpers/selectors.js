@@ -10,7 +10,7 @@ export const getAppointmentsForDay = function (state, day) {
 };
 
 export const getInterview = function (state, interview) {
-  console.log("state.interviewers", state.interviewers);
+  // console.log("state.interviewers", state.interviewers);
 
   if (!interview) {
     return null;
@@ -22,13 +22,13 @@ export const getInterview = function (state, interview) {
 };
 
 export const getInterviewersForDay = function (state, day) {
-  const appts = getAppointmentsForDay(state, day);
-
-  const interviewersForDay = appts
-    .filter((appt) => appt.interview)
-    .map(
-      (appointment) => state.interviewers[appointment.interview.interviewer]
-    );
-
-  return interviewersForDay;
+  // find all interview records with name = day
+  const records = state.days.find((d) => d.name === day);
+  // console.log(found);
+  // quit if no days or records found
+  if (state.days.length === 0 || records === undefined) return [];
+  // handle no interviewers (if test data is missing)
+  if (!records.interviewers) return [];
+  // return array of interviewers
+  return records.interviewers.map((id) => state.interviewers[id]);
 };

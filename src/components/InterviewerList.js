@@ -3,7 +3,9 @@ import "./InterviewerList.scss";
 import InterviewerListItem from "./InterviewerListItem";
 
 export default function Interviewer(props) {
-  const Interviewers = props.interviewers.map((interviewer) => {
+  // console.log("interviewers", props.interviewers);
+  const interviewers = props.interviewers.map((interviewer) => {
+    // console.log("int.id", interviewer.id);
     return (
       <InterviewerListItem
         key={interviewer.id}
@@ -11,7 +13,7 @@ export default function Interviewer(props) {
         avatar={interviewer.avatar}
         selected={interviewer.id === props.interviewer}
         setInterviewer={() => {
-          console.log("interviewerList.setInterviewer()", interviewer.id);
+          // console.log("interviewerList.setInterviewer()", interviewer.id);
           props.onChange(interviewer.id);
         }}
       />
@@ -21,7 +23,7 @@ export default function Interviewer(props) {
   return (
     <section onClick={props.setInterviewer} className={props.array}>
       <h4 className="interviewers__header text--light">Interviewer</h4>
-      <ul className="interviewers__list">{Interviewers}</ul>
+      <ul className="interviewers__list">{interviewers}</ul>
     </section>
   );
 }
