@@ -7,9 +7,11 @@ export default function useVisualMode(initial) {
     if (!replace) {
       setHistory((prev) => [...prev, newMode]);
     } else {
-      setHistory((prev) => [...prev.slice(0, prev.length - 1, newMode)]);
+      setHistory((prev) => [...prev.slice(0, prev.length - 1), newMode]);
     }
   };
+
+  console.log("history", history);
 
   const back = function () {
     if (history.length < 2) {
