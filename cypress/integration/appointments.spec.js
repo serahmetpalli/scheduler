@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 describe("Appointments", () => {
   beforeEach(() => {
-    cy.request("GET", "http://localhost:8001/api/debug/reset");
+    cy.request("GET", "/api/debug/reset");
 
     cy.visit("/");
 
@@ -11,7 +12,7 @@ describe("Appointments", () => {
     cy.get("[alt=Add]").first().click();
 
     cy.get("[data-testid=student-name-input]").type("Lydia Miller-Jones");
-    cy.get("[alt='Sylvia Palmer']").click();
+    cy.get('[alt="Sylvia Palmer"]').click();
 
     cy.contains("Save").click();
 
