@@ -15,15 +15,16 @@ export default function InterviewerList(props) {
         avatar={interviewer.avatar}
         selected={interviewer.id === props.interviewer}
         setInterviewer={() => {
-          // console.log("interviewerList.setInterviewer()", interviewer.id);
-          props.onChange(interviewer.id);
+          console.log("interviewerList.setInterviewer()", interviewer.id);
+          props.setInterviewer(interviewer.id);
         }}
       />
     );
   });
-
+  console.log("interviewers", props.interviewers);
+  console.log("interviewer", props.interviewer);
   return (
-    <section onClick={props.setInterviewer} className={props.array}>
+    <section className={props.array}>
       <h4 className="interviewers__header text--light">Interviewer</h4>
       <ul className="interviewers__list">{interviewers}</ul>
     </section>
